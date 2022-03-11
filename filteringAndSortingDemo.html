@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Client Side Filter Data">
+        <div class="slds-var-m-medium_around">
+            <lightning-layout>
+                <lightning-layout-item  size="2" padding="around-small">
+                    <lightning-combobox name="filterBy" value={filterBy} label="Filter By" 
+                                        options={FilterByValue} onchange={filterByHandler}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item  size="4" padding="around-small">
+                    <lightning-input label="Filter" type="text" onkeyup={filterHandler} ></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item  size="2" alignment-bump="left"  padding="around-small">
+                    <lightning-combobox name="sortedBy" value={sortedBy} label="Sorted By" 
+                                        options={sortedByValue} onchange={sortHandler}>
+                    </lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+       
+        <table>
+            <thead>
+                <tr>
+                    <template for:each={headings} for:item="heading">
+                        <th key={heading}>{heading}</th>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <template for:each={filteredData} for:item="data">
+                        <tr key={data.Id}>
+                            <td>{data.Id}</td>
+                            <td>{data.Name}</td>
+                            <td>{data.Email}</td>
+                            <td>{data.Title}</td>
+                            <td>{data.DoNotCall}</td>
+                        </tr>
+                    </template>
+                
+                
+            </tbody>
+        </table>
+    </div>
+    </lightning-card>
+</template>
